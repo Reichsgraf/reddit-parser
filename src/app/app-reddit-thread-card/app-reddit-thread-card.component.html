@@ -1,19 +1,51 @@
 <mat-card>
   <mat-card-header>
+
     <img mat-card-avatar [ngSrc]="linkData | getThumbnailImage"
          [height]="40" [width]="40" [alt]="linkData?.data?.thumbnail"/>
-    <mat-card-title>{{linkData?.data?.title}}</mat-card-title>
-    <mat-card-subtitle [style.color]="linkData?.data?.link_flair_background_color">
-      {{linkData?.data?.link_flair_text | cleanCategory}}
+
+    <mat-card-title>
+      <span class="title">{{linkData?.data?.title}}</span>
+    </mat-card-title>
+
+    <mat-card-subtitle class="subtitle-container"
+                       [style.color]="linkData?.data?.link_flair_background_color"
+                       [style.border-color]="linkData?.data?.link_flair_background_color">
+      <span class="subtitle">{{linkData?.data?.link_flair_text | cleanCategory}}</span>
+      <ng-container *ngIf="linkData?.data?.thumbnail === 'nsfw'">
+        <span class="subtitle nsfw">{{linkData?.data?.thumbnail}}</span>
+      </ng-container>
     </mat-card-subtitle>
+
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+  <ng-container *ngIf="!linkData?.data?.is_video">
+    <img mat-card-image [src]="linkData?.data?.url" alt="">
+  </ng-container>
+
+  <ng-container *ngIf="linkData?.data?.is_video">
+    <div mat-card-image [style.display]="'flex'">
+      <vg-player [style.z-index]="0">
+        <video [vgMedia]="$any(media)" #media
+               (canplay)="reloadMasonryLayout()" (ended)="toggleBackGroundNSFW(true)"
+               id="singleVideo" preload="auto" controls class="reddit-video">
+          <source [src]="linkData?.data?.media?.reddit_video?.fallback_url" type="video/mp4">
+        </video>
+      </vg-player>
+      <div class="nsfw-background" *ngIf="linkData?.data?.thumbnail === 'nsfw' && showBackGroundNSFW"
+           [style.background-image]="'url(' + (linkData | getThumbnailImage) + ')'"
+           (click)="toggleBackGroundNSFW(false); media.play()">
+        Not Safe For Work Content
+      </div>
+    </div>
+  </ng-container>
+
   <mat-card-content>
-    <p>
+    <!--<p>
       The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
       A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
       bred for hunting.
-    </p>
+    </p>-->
   </mat-card-content>
   <!--<mat-card-actions>
     <button mat-button>LIKE</button>

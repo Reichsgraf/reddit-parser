@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {testData} from "./static/test-data";
-import {NgxMasonryOptions} from "ngx-masonry";
+import {NgxMasonryComponent, NgxMasonryOptions} from "ngx-masonry";
 
 @Component({
   selector: 'app-root',
@@ -13,5 +13,7 @@ export class AppComponent {
   masonryOptions: NgxMasonryOptions = {
     gutter: 15
   };
+
+  @ViewChild('masonry') masonry: NgxMasonryComponent | undefined;
 
 }

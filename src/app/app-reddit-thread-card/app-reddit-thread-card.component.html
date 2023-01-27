@@ -12,7 +12,7 @@
                        [style.color]="linkData?.data?.link_flair_background_color"
                        [style.border-color]="linkData?.data?.link_flair_background_color">
       <span class="subtitle">{{linkData?.data?.link_flair_text | cleanCategory}}</span>
-      <ng-container *ngIf="linkData?.data?.thumbnail === 'nsfw'">
+      <ng-container *ngIf="linkData?.data?.thumbnail | isNSFW">
         <span class="subtitle nsfw">{{linkData?.data?.thumbnail}}</span>
       </ng-container>
     </mat-card-subtitle>
@@ -32,7 +32,7 @@
           <source [src]="linkData?.data?.media?.reddit_video?.fallback_url" type="video/mp4">
         </video>
       </vg-player>
-      <div class="nsfw-background" *ngIf="linkData?.data?.thumbnail === 'nsfw' && showBackGroundNSFW"
+      <div class="nsfw-background" *ngIf="(linkData?.data?.thumbnail | isNSFW) && showBackGroundNSFW"
            [style.background-image]="'url(' + (linkData | getThumbnailImage) + ')'"
            (click)="toggleBackGroundNSFW(false); media.play()">
         Not Safe For Work Content
@@ -41,14 +41,12 @@
   </ng-container>
 
   <mat-card-content>
-    <!--<p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>-->
+    <ng-container *ngIf="linkData?.data?.url && !(linkData?.data?.domain | isRedditDomain)">
+      <a [href]="linkData?.data?.url">{{linkData?.data?.url}}</a>
+    </ng-container>
   </mat-card-content>
-  <!--<mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>-->
+  <mat-card-actions>
+    <button mat-button (click)="goToSource()">LINK ON POST</button>
+    <!--<button mat-button>SHARE</button>-->
+  </mat-card-actions>
 </mat-card>

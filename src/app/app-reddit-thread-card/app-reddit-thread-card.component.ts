@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {NgxMasonryComponent} from "ngx-masonry";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-reddit-thread-card',
@@ -13,6 +14,7 @@ export class AppRedditThreadCardComponent implements OnInit {
 
   @ViewChild('media') media: ElementRef | undefined;
   showBackGroundNSFW = true;
+  apiURL = environment.apiURL;
 
   ngOnInit(): void {
     this.media?.nativeElement?.load()
@@ -27,6 +29,10 @@ export class AppRedditThreadCardComponent implements OnInit {
 
   toggleBackGroundNSFW(flag: boolean) {
     this.showBackGroundNSFW = flag;
+  }
+
+  goToSource() {
+    window.open(`${this.apiURL}${this.linkData?.data?.permalink}`, "_blank")
   }
 
 }

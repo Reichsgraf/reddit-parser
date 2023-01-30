@@ -1,7 +1,8 @@
 <mat-card>
   <mat-card-header>
 
-    <img mat-card-avatar [ngSrc]="linkData | getThumbnailImage"
+    <img *ngIf="linkData | getThumbnailImage as thumbnailImage"
+         mat-card-avatar [ngSrc]="thumbnailImage"
          [height]="40" [width]="40" [alt]="linkData?.data?.thumbnail"/>
 
     <mat-card-title>
@@ -23,13 +24,13 @@
     <img mat-card-image [src]="linkData?.data?.url" alt="">
   </ng-container>
 
-  <ng-container *ngIf="linkData?.data?.is_video">
+  <ng-container *ngIf="linkData | getVideoFallbackUrl as videoFallbackUrl">
     <div mat-card-image [style.display]="'flex'">
       <vg-player [style.z-index]="0">
         <video [vgMedia]="$any(media)" #media
                (canplay)="reloadMasonryLayout()" (ended)="toggleBackGroundNSFW(true)"
                id="singleVideo" preload="auto" controls class="reddit-video">
-          <source [src]="linkData?.data?.media?.reddit_video?.fallback_url" type="video/mp4">
+          <source [src]="videoFallbackUrl" type="video/mp4">
         </video>
       </vg-player>
       <div class="nsfw-background" *ngIf="(linkData?.data?.thumbnail | isNSFW) && showBackGroundNSFW"
@@ -45,6 +46,7 @@
       <a [href]="linkData?.data?.url">{{linkData?.data?.url}}</a>
     </ng-container>
   </mat-card-content>
+
   <mat-card-actions>
     <button mat-button (click)="goToSource()">LINK ON POST</button>
     <!--<button mat-button>SHARE</button>-->

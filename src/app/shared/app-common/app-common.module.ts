@@ -5,10 +5,12 @@ import {GetThumbnailImagePipe} from "./pipes/get-thumbnail-image.pipe";
 import {IsNsfwPipe} from "./pipes/is-nsfw.pipe";
 import {RedditApiService} from "./services/reddit-api.service";
 import {IsRedditDomainPipe} from "./pipes/is-reddit-domain.pipe";
+import {GetVideoFallbackUrlPipe} from "./pipes/get-video-fallback-url.pipe";
 
 const pipes = [
   CleanCategoryPipe,
   GetThumbnailImagePipe,
+  GetVideoFallbackUrlPipe,
   IsNsfwPipe,
   IsRedditDomainPipe
 ]

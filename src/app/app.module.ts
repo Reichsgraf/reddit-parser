@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { AppRedditThreadCardComponent } from './app-reddit-thread-card/app-reddit-thread-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,17 +14,21 @@ import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ApiPrefixInterceptor} from "./shared/app-common/interceptors/api-prefix.interceptor";
 import {MatButtonModule} from "@angular/material/button";
+import {AppNsfwContentComponent} from './app-nsfw-content/app-nsfw-content.component';
+import {PinchZoomModule} from "ngx-pinch-zoom";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppRedditThreadCardComponent
+    AppRedditThreadCardComponent,
+    AppNsfwContentComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatCardModule,
+    MatButtonModule,
     NgOptimizedImage,
     AppCommonModule,
     NgxMasonryModule,
@@ -33,7 +36,7 @@ import {MatButtonModule} from "@angular/material/button";
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    MatButtonModule
+    PinchZoomModule,
   ],
   providers: [
     {

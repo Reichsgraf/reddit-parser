@@ -1,0 +1,4 @@
+<div class="nsfw-background" *ngIf="(linkData?.data?.thumbnail | isNSFW)"
+     [style.background-image]="'url(' + (linkData | getThumbnailImageUrl) + ')'">
+  Not Safe For Work Content
+</div>

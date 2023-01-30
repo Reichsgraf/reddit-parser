@@ -35,17 +35,7 @@
   width: 100%;
 }
 
-.nsfw-background {
-  position: absolute;
-  z-index: 1;
+.media-card {
   display: flex;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  background-size: auto;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
   cursor: pointer;
 }

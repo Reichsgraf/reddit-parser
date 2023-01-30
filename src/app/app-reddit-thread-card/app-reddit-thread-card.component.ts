@@ -31,6 +31,10 @@ export class AppRedditThreadCardComponent implements OnInit {
     this.showBackGroundNSFW = flag;
   }
 
+  imageNSFWCountdown() {
+    setTimeout(() => this.toggleBackGroundNSFW(true), 10000);
+  }
+
   goToSource() {
     window.open(`${this.apiURL}${this.linkData?.data?.permalink}`, "_blank")
   }

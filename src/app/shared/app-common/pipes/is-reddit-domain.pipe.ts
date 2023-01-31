@@ -6,7 +6,7 @@ import {Pipe, PipeTransform} from "@angular/core";
 export class IsRedditDomainPipe implements PipeTransform {
 
   transform(domain: string): boolean {
-    return domain.includes('.redd.it');
+    return domain?.includes('.redd.it');
   }
 
 }

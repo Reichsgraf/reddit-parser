@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgxMasonryComponent, NgxMasonryOptions} from "ngx-masonry";
 import {RedditApiService} from "./shared/app-common/services/reddit-api.service";
 import {Observable} from "rxjs";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -15,13 +16,20 @@ export class AppComponent implements OnInit {
     gutter: 15
   };
 
+  control: FormControl<string | null> = new FormControl('UkraineWarVideoReport');
   @ViewChild('masonry') masonry: NgxMasonryComponent | undefined;
 
   constructor(private redditApiService: RedditApiService) {
   }
 
   ngOnInit(): void {
-    this.testData$ = this.redditApiService.getRedditTop();
+    this.getRedditTop();
+  }
+
+  getRedditTop() {
+    // this.testData$ = of(testData);
+    console.log(this.control.value);
+    this.testData$ = this.redditApiService.getRedditTop(this.control.value);
   }
 
 }

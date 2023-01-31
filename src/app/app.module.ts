@@ -17,6 +17,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {AppNsfwContentComponent} from './app-nsfw-content/app-nsfw-content.component';
 import {PinchZoomModule} from "ngx-pinch-zoom";
 import {MatCarouselModule} from "ng-mat-carousel";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import {MatCarouselModule} from "ng-mat-carousel";
     VgOverlayPlayModule,
     VgBufferingModule,
     PinchZoomModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

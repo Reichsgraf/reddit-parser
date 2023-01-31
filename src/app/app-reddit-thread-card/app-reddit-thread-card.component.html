@@ -53,9 +53,8 @@
     <div mat-card-image>
       <mat-carousel timings="250ms ease-in"
                     [autoplay]="false"
-                    color="accent"
+                    color="primary"
                     maxWidth="auto"
-                    [proportion]="100"
                     [slides]="linkData?.data?.gallery_data?.items?.length"
                     [loop]="true"
                     [hideArrows]="false"
@@ -65,17 +64,19 @@
                     orientation="ltr">
         <mat-carousel-slide #matCarouselSlide
                             *ngFor="let slide of linkData?.data?.gallery_data?.items; let i = index"
-                            [image]="linkData?.data?.media_metadata[slide?.media_id]?.s?.u | cleanUrl"
                             overlayColor="#00000040"
                             [hideOverlay]="false">
+          <pinch-zoom>
+            <img alt="" [src]="linkData?.data?.media_metadata[slide?.media_id]?.s?.u | cleanUrl">
+          </pinch-zoom>
         </mat-carousel-slide>
       </mat-carousel>
     </div>
   </ng-container>
 
   <mat-card-content>
-    <ng-container *ngIf="linkData?.data?.url && !(linkData?.data?.domain | isRedditDomain)">
-      <a [href]="linkData?.data?.url" target="_blank">{{linkData?.data?.url}}</a>
+    <ng-container *ngIf="linkData?.data?.url && !(linkData?.data?.domain | isRedditDomain) && !(linkData?.data?.url | isRedditGallery)">
+      <a [href]="linkData?.data?.url" target="_blank" class="card-link">{{linkData?.data?.url}}</a>
     </ng-container>
   </mat-card-content>
 

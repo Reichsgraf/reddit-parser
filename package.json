@@ -22,6 +22,7 @@
     "@angular/router": "^15.1.0",
     "@videogular/ngx-videogular": "^7.0.1",
     "masonry-layout": "^4.2.2",
+    "ng-mat-carousel": "^0.11.1",
     "ngx-masonry": "^14.0.1",
     "ngx-pinch-zoom": "^2.6.2",
     "rxjs": "~7.8.0",

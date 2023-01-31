@@ -16,6 +16,7 @@ import {ApiPrefixInterceptor} from "./shared/app-common/interceptors/api-prefix.
 import {MatButtonModule} from "@angular/material/button";
 import {AppNsfwContentComponent} from './app-nsfw-content/app-nsfw-content.component';
 import {PinchZoomModule} from "ngx-pinch-zoom";
+import {MatCarouselModule} from "ng-mat-carousel";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {PinchZoomModule} from "ngx-pinch-zoom";
     HttpClientModule,
     MatCardModule,
     MatButtonModule,
+    MatCarouselModule,
     NgOptimizedImage,
     AppCommonModule,
     NgxMasonryModule,

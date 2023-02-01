@@ -37,7 +37,7 @@
 
   <ngx-masonry #masonry class="newsfeed" [options]="masonryOptions" [ordered]="true">
     <app-reddit-thread-card *ngFor="let item of ((testData$ | async)?.data?.children || [])" ngxMasonryItem
-                            [linkData]="item" [masonry]="masonry" (dataLoaded)="reloadMasonryLayout()">
+                            [linkData]="item" (dataLoaded)="reloadMasonryLayout()">
     </app-reddit-thread-card>
   </ngx-masonry>
 

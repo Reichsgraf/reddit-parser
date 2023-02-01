@@ -7,7 +7,6 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import {NgxMasonryComponent} from "ngx-masonry";
 import {environment} from "../../environments/environment";
 
 @Component({
@@ -18,7 +17,6 @@ import {environment} from "../../environments/environment";
 export class AppRedditThreadCardComponent implements OnInit {
 
   @Input() linkData: any;
-  @Input() masonry: NgxMasonryComponent | undefined;
   @Output() dataLoaded = new EventEmitter();
 
   @ViewChild('media') media: ElementRef | undefined;

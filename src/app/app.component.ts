@@ -31,4 +31,11 @@ export class AppComponent implements OnInit {
     this.testData$ = this.redditApiService.getRedditTop(this.control.value);
   }
 
+  reloadMasonryLayout() {
+    if (this.masonry !== undefined) {
+      this.masonry.reloadItems();
+      this.masonry.layout();
+    }
+  }
+
 }

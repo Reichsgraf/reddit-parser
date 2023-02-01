@@ -25,7 +25,8 @@
   <ng-container *ngIf="!linkData?.data?.is_video && !(linkData?.data?.url | isRedditGallery)">
     <ng-container *ngIf="!(linkData?.data?.thumbnail | isNSFW) || !showBackGroundNSFW; else nsfwImage">
       <pinch-zoom>
-        <img mat-card-image class="media-card" [src]="linkData?.data?.url" alt="">
+        <img mat-card-image class="media-card" [src]="linkData?.data?.url" alt=""
+             (loadeddata)="reloadMasonryLayout()">
       </pinch-zoom>
     </ng-container>
   </ng-container>
@@ -37,7 +38,7 @@
                       [autoplay]="false"
                       color="primary"
                       maxWidth="auto"
-                      [slides]="linkData?.data?.gallery_data?.items?.length"
+                      [slides]="(linkData | getGalleryData)?.items?.length"
                       [loop]="true"
                       [hideArrows]="false"
                       [hideIndicators]="true"
@@ -49,7 +50,8 @@
                               overlayColor="#00000040"
                               [hideOverlay]="false">
             <pinch-zoom>
-              <img alt="" [src]="(linkData | getGalleryMediaMetadata)[slide?.media_id]?.s?.u | cleanUrl">
+              <img alt="" [src]="(linkData | getGalleryMediaMetadata)[slide?.media_id]?.s?.u | cleanUrl"
+                   (loadeddata)="reloadMasonryLayout()">
             </pinch-zoom>
           </mat-carousel-slide>
         </mat-carousel>
@@ -59,6 +61,7 @@
 
   <ng-template #nsfwImage>
     <img mat-card-image class="media-card" [src]="linkData | getImageUrl" alt=""
+         (loadeddata)="reloadMasonryLayout()"
          (click)="toggleBackGroundNSFW(false); imageNSFWCountdown()">
   </ng-template>
 

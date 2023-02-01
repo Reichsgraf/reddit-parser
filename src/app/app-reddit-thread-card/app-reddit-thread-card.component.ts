@@ -1,4 +1,12 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {NgxMasonryComponent} from "ngx-masonry";
 import {environment} from "../../environments/environment";
 
@@ -11,6 +19,7 @@ export class AppRedditThreadCardComponent implements OnInit {
 
   @Input() linkData: any;
   @Input() masonry: NgxMasonryComponent | undefined;
+  @Output() dataLoaded = new EventEmitter();
 
   @ViewChild('media') media: ElementRef | undefined;
   showBackGroundNSFW = true;
@@ -21,10 +30,11 @@ export class AppRedditThreadCardComponent implements OnInit {
   }
 
   reloadMasonryLayout() {
-    if (this.masonry !== undefined) {
+    /*if (this.masonry !== undefined) {
       this.masonry.reloadItems();
       this.masonry.layout();
-    }
+    }*/
+    this.dataLoaded.emit();
   }
 
   toggleBackGroundNSFW(flag: boolean) {

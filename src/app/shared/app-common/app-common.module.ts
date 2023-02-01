@@ -9,10 +9,14 @@ import {GetVideoFallbackUrlPipe} from "./pipes/get-video-fallback-url.pipe";
 import {GetImageUrlPipe} from "./pipes/get-image-url.pipe";
 import {IsRedditGalleryPipe} from "./pipes/is-reddit-gallery.pipe";
 import {CleanUrlPipe} from "./pipes/clean-url.pipe";
+import {GetGalleryDataPipe} from "./pipes/get-gallery-data.pipe";
+import {GetGalleryMediaMetadataPipe} from "./pipes/get-gallery-media-metadata.pipe";
 
 const pipes = [
   CleanCategoryPipe,
   CleanUrlPipe,
+  GetGalleryDataPipe,
+  GetGalleryMediaMetadataPipe,
   GetImageUrlPipe,
   GetThumbnailImageUrlPipe,
   GetVideoFallbackUrlPipe,

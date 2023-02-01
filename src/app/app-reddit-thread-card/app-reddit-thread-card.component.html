@@ -2,7 +2,7 @@
   <mat-card-header>
 
     <img *ngIf="linkData | getThumbnailImageUrl as thumbnailImage"
-         mat-card-avatar [ngSrc]="thumbnailImage"
+         mat-card-avatar [src]="thumbnailImage"
          [height]="40" [width]="40" [alt]="linkData?.data?.thumbnail"/>
 
     <mat-card-title>
@@ -28,11 +28,39 @@
         <img mat-card-image class="media-card" [src]="linkData?.data?.url" alt="">
       </pinch-zoom>
     </ng-container>
-    <ng-template #nsfwImage>
-      <img mat-card-image class="media-card" [src]="linkData | getImageUrl" alt=""
-           (click)="toggleBackGroundNSFW(false); imageNSFWCountdown()">
-    </ng-template>
   </ng-container>
+
+  <ng-container *ngIf="linkData?.data?.url | isRedditGallery">
+    <ng-container *ngIf="!(linkData?.data?.thumbnail | isNSFW) || !showBackGroundNSFW; else nsfwImage">
+      <div mat-card-image>
+        <mat-carousel timings="250ms ease-in"
+                      [autoplay]="false"
+                      color="primary"
+                      maxWidth="auto"
+                      [slides]="linkData?.data?.gallery_data?.items?.length"
+                      [loop]="true"
+                      [hideArrows]="false"
+                      [hideIndicators]="true"
+                      [useKeyboard]="true"
+                      [useMouseWheel]="false"
+                      orientation="ltr">
+          <mat-carousel-slide #matCarouselSlide
+                              *ngFor="let slide of (linkData | getGalleryData)?.items; let i = index"
+                              overlayColor="#00000040"
+                              [hideOverlay]="false">
+            <pinch-zoom>
+              <img alt="" [src]="(linkData | getGalleryMediaMetadata)[slide?.media_id]?.s?.u | cleanUrl">
+            </pinch-zoom>
+          </mat-carousel-slide>
+        </mat-carousel>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #nsfwImage>
+    <img mat-card-image class="media-card" [src]="linkData | getImageUrl" alt=""
+         (click)="toggleBackGroundNSFW(false); imageNSFWCountdown()">
+  </ng-template>
 
   <ng-container *ngIf="linkData | getVideoFallbackUrl as videoFallbackUrl">
     <div mat-card-image class="media-card">
@@ -48,31 +76,6 @@
       <app-nsfw-content *ngIf="showBackGroundNSFW" [linkData]="linkData"
                         (click)="toggleBackGroundNSFW(false); media.play()">
       </app-nsfw-content>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="linkData?.data?.url | isRedditGallery">
-    <div mat-card-image>
-      <mat-carousel timings="250ms ease-in"
-                    [autoplay]="false"
-                    color="primary"
-                    maxWidth="auto"
-                    [slides]="linkData?.data?.gallery_data?.items?.length"
-                    [loop]="true"
-                    [hideArrows]="false"
-                    [hideIndicators]="true"
-                    [useKeyboard]="true"
-                    [useMouseWheel]="false"
-                    orientation="ltr">
-        <mat-carousel-slide #matCarouselSlide
-                            *ngFor="let slide of linkData?.data?.gallery_data?.items; let i = index"
-                            overlayColor="#00000040"
-                            [hideOverlay]="false">
-          <pinch-zoom>
-            <img alt="" [src]="linkData?.data?.media_metadata[slide?.media_id]?.s?.u | cleanUrl">
-          </pinch-zoom>
-        </mat-carousel-slide>
-      </mat-carousel>
     </div>
   </ng-container>
 

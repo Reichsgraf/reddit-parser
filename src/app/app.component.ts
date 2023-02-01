@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
 
   getRedditTop() {
     // this.testData$ = of(testData);
-    console.log(this.control.value);
     this.testData$ = this.redditApiService.getRedditTop(this.control.value);
   }
 

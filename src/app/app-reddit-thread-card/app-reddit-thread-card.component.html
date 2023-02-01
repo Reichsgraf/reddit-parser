@@ -26,7 +26,7 @@
     <ng-container *ngIf="!(linkData?.data?.thumbnail | isNSFW) || !showBackGroundNSFW; else nsfwImage">
       <pinch-zoom>
         <img mat-card-image class="media-card" [src]="linkData?.data?.url" alt=""
-             (loadeddata)="reloadMasonryLayout()">
+             (load)="reloadMasonryLayout()">
       </pinch-zoom>
     </ng-container>
   </ng-container>
@@ -51,7 +51,7 @@
                               [hideOverlay]="false">
             <pinch-zoom>
               <img alt="" [src]="(linkData | getGalleryMediaMetadata)[slide?.media_id]?.s?.u | cleanUrl"
-                   (loadeddata)="reloadMasonryLayout()">
+                   (load)="reloadMasonryLayout()">
             </pinch-zoom>
           </mat-carousel-slide>
         </mat-carousel>
@@ -61,7 +61,7 @@
 
   <ng-template #nsfwImage>
     <img mat-card-image class="media-card" [src]="linkData | getImageUrl" alt=""
-         (loadeddata)="reloadMasonryLayout()"
+         (load)="reloadMasonryLayout()"
          (click)="toggleBackGroundNSFW(false); imageNSFWCountdown()">
   </ng-template>
 

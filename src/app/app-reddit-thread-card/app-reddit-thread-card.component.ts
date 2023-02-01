@@ -30,10 +30,6 @@ export class AppRedditThreadCardComponent implements OnInit {
   }
 
   reloadMasonryLayout() {
-    /*if (this.masonry !== undefined) {
-      this.masonry.reloadItems();
-      this.masonry.layout();
-    }*/
     this.dataLoaded.emit();
   }
 

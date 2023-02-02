@@ -2,7 +2,7 @@
   <mat-card-header>
 
     <img *ngIf="linkData | getThumbnailImageUrl as thumbnailImage"
-         mat-card-avatar [src]="thumbnailImage"
+         mat-card-avatar [src]="thumbnailImage" class="card-thumbnail"
          [height]="40" [width]="40" [alt]="linkData?.data?.thumbnail"/>
 
     <mat-card-title>
@@ -22,7 +22,7 @@
 
   </mat-card-header>
 
-  <ng-container *ngIf="!linkData?.data?.is_video && !(linkData?.data?.url | isRedditGallery)">
+  <ng-container *ngIf="!(linkData | isVideo) && !(linkData?.data?.url | isRedditGallery)">
     <ng-container *ngIf="!(linkData?.data?.thumbnail | isNSFW) || !showBackGroundNSFW; else nsfwImage">
       <pinch-zoom>
         <img mat-card-image class="media-card" [src]="linkData?.data?.url" alt=""
@@ -63,9 +63,10 @@
     <img mat-card-image class="media-card" [src]="linkData | getImageUrl" alt=""
          (load)="reloadMasonryLayout()"
          (click)="toggleBackGroundNSFW(false); imageNSFWCountdown()">
+    nsfw
   </ng-template>
 
-  <ng-container *ngIf="linkData | getVideoFallbackUrl as videoFallbackUrl">
+  <ng-container *ngIf="linkData | isVideo">
     <div mat-card-image class="media-card">
       <vg-player [style.z-index]="0">
         <video [vgMedia]="$any(media)" #media
@@ -73,7 +74,7 @@
                (ended)="toggleBackGroundNSFW(true)"
                (pause)="toggleBackGroundNSFW(true)"
                id="singleVideo" preload="auto" controls class="reddit-video">
-          <source [src]="videoFallbackUrl" type="video/mp4">
+          <source [src]="linkData | getVideoFallbackUrl" type="video/mp4">
         </video>
       </vg-player>
       <app-nsfw-content *ngIf="showBackGroundNSFW" [linkData]="linkData"

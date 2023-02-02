@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CleanCategoryPipe} from "./pipes/clean-category.pipe";
 import {GetThumbnailImageUrlPipe} from "./pipes/get-thumbnail-image-url.pipe";
@@ -11,6 +11,7 @@ import {IsRedditGalleryPipe} from "./pipes/is-reddit-gallery.pipe";
 import {CleanUrlPipe} from "./pipes/clean-url.pipe";
 import {GetGalleryDataPipe} from "./pipes/get-gallery-data.pipe";
 import {GetGalleryMediaMetadataPipe} from "./pipes/get-gallery-media-metadata.pipe";
+import {IsVideoPipe} from "./pipes/is-video.pipe";
 
 const pipes = [
   CleanCategoryPipe,
@@ -23,6 +24,7 @@ const pipes = [
   IsNsfwPipe,
   IsRedditDomainPipe,
   IsRedditGalleryPipe,
+  IsVideoPipe,
 ]
 
 const services = [
@@ -38,9 +40,13 @@ const services = [
   ],
   exports: [
     pipes
-  ],
-  providers: [
-    services
   ]
 })
-export class AppCommonModule { }
+export class AppCommonModule {
+  static forRoot(): ModuleWithProviders<AppCommonModule> {
+    return {
+      ngModule: AppCommonModule,
+      providers: [services, pipes]
+    }
+  }
+}

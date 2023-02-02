@@ -34,7 +34,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatButtonModule,
     MatCarouselModule,
     NgOptimizedImage,
-    AppCommonModule,
+    AppCommonModule.forRoot(),
     NgxMasonryModule,
     VgCoreModule,
     VgControlsModule,

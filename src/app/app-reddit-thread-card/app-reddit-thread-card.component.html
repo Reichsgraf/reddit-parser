@@ -63,7 +63,6 @@
     <img mat-card-image class="media-card" [src]="linkData | getImageUrl" alt=""
          (load)="reloadMasonryLayout()"
          (click)="toggleBackGroundNSFW(false); imageNSFWCountdown()">
-    nsfw
   </ng-template>
 
   <ng-container *ngIf="linkData | isVideo">
@@ -71,6 +70,7 @@
       <vg-player [style.z-index]="0">
         <video [vgMedia]="$any(media)" #media
                (canplay)="reloadMasonryLayout()"
+               (seeked)="toggleBackGroundNSFW(false); media.play()"
                (ended)="toggleBackGroundNSFW(true)"
                (pause)="toggleBackGroundNSFW(true)"
                id="singleVideo" preload="auto" controls class="reddit-video">

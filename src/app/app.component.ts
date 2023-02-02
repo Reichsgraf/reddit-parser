@@ -28,6 +28,9 @@ export class AppComponent implements OnInit {
 
   getRedditTop() {
     // this.testData$ = of(testData);
+    if (!this.control.value) {
+      this.control.setValue('UkraineWarVideoReport');
+    }
     this.testData$ = this.redditApiService.getRedditTop(this.control.value);
   }
 

@@ -7,7 +7,7 @@ export class RedditApiService {
   constructor(private http: HttpClient) {}
 
   getRedditTop(reddit: string | null) {
-    return this.http.get(`/r/${reddit ? reddit : 'UkraineWarVideoReport'}/top.json`);
+    return this.http.get(`/r/${reddit}/top.json`);
   }
 
 }

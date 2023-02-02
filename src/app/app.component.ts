@@ -27,7 +27,9 @@ export class AppComponent implements OnInit {
   }
 
   getRedditTop() {
-    // this.testData$ = of(testData);
+    /*this.testData$ = of(testData).pipe(
+      map((res) => JSON.parse(JSON.stringify(res)?.replaceAll('&amp;', '&')))
+    );*/
     if (!this.control.value) {
       this.control.setValue('UkraineWarVideoReport');
     }

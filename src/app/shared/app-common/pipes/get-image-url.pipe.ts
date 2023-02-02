@@ -17,7 +17,7 @@ export class GetImageUrlPipe implements PipeTransform {
     if (linkData?.data?.thumbnail === 'nsfw') {
       return this.isRedditGalleryPipe.transform(linkData?.data?.url)
         ? linkData?.data?.media_metadata[linkData?.data?.gallery_data?.items[0]?.media_id]?.s?.u
-        : linkData?.data?.preview?.images[0]?.variants?.obfuscated?.source?.url?.replaceAll('&amp;', '&');
+        : linkData?.data?.preview?.images[0]?.variants?.obfuscated?.source?.url;
     }
 
     return '';

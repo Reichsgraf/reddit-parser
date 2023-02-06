@@ -3,7 +3,6 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   ViewChild
 } from '@angular/core';
@@ -14,7 +13,7 @@ import {environment} from "../../environments/environment";
   templateUrl: './app-reddit-thread-card.component.html',
   styleUrls: ['./app-reddit-thread-card.component.scss']
 })
-export class AppRedditThreadCardComponent implements OnInit {
+export class AppRedditThreadCardComponent {
 
   @Input() linkData: any;
   @Output() dataLoaded = new EventEmitter();
@@ -22,10 +21,6 @@ export class AppRedditThreadCardComponent implements OnInit {
   @ViewChild('media') media: ElementRef | undefined;
   showBackGroundNSFW = true;
   apiURL = environment.apiURL;
-
-  ngOnInit(): void {
-    this.media?.nativeElement?.load()
-  }
 
   reloadMasonryLayout() {
     this.dataLoaded.emit();

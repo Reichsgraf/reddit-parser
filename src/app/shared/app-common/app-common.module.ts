@@ -1,6 +1,6 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CleanCategoryPipe} from "./pipes/clean-category.pipe";
+import {CleanTagsPipe} from "./pipes/clean-tags.pipe";
 import {GetThumbnailImageUrlPipe} from "./pipes/get-thumbnail-image-url.pipe";
 import {IsNsfwPipe} from "./pipes/is-nsfw.pipe";
 import {RedditApiService} from "./services/reddit-api.service";
@@ -11,14 +11,16 @@ import {IsRedditGalleryPipe} from "./pipes/is-reddit-gallery.pipe";
 import {GetGalleryDataPipe} from "./pipes/get-gallery-data.pipe";
 import {GetGalleryMediaMetadataPipe} from "./pipes/get-gallery-media-metadata.pipe";
 import {IsVideoPipe} from "./pipes/is-video.pipe";
+import {IsCrossPostPipe} from "./pipes/is-cross-post.pipe";
 
 const pipes = [
-  CleanCategoryPipe,
+  CleanTagsPipe,
   GetGalleryDataPipe,
   GetGalleryMediaMetadataPipe,
   GetImageUrlPipe,
   GetThumbnailImageUrlPipe,
   GetVideoFallbackUrlPipe,
+  IsCrossPostPipe,
   IsNsfwPipe,
   IsRedditDomainPipe,
   IsRedditGalleryPipe,

@@ -1,12 +1,16 @@
 import {Pipe, PipeTransform} from "@angular/core";
+import {IsCrossPostPipe} from "./is-cross-post.pipe";
 
 @Pipe({
   name: 'getGalleryMediaMetadata'
 })
 export class GetGalleryMediaMetadataPipe implements PipeTransform {
 
+  constructor(private isCrossPost: IsCrossPostPipe) {
+  }
+
   transform(linkData: any): any {
-    if (linkData?.data?.hasOwnProperty('crosspost_parent_list')) {
+    if (this.isCrossPost.transform(linkData)) {
       return linkData?.data?.crosspost_parent_list[0]?.media_metadata;
     }
 

@@ -13,7 +13,7 @@
                        [style.color]="linkData?.data?.link_flair_background_color"
                        [style.border-color]="linkData?.data?.link_flair_background_color">
       <span class="subtitle" *ngIf="linkData?.data?.link_flair_text">
-        {{linkData?.data?.link_flair_text | cleanCategory}}
+        {{linkData?.data?.link_flair_text | cleanTags}}
       </span>
       <ng-container *ngIf="linkData?.data?.thumbnail | isNSFW">
         <span class="subtitle nsfw">{{linkData?.data?.thumbnail}}</span>

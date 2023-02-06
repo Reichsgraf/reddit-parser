@@ -18,7 +18,7 @@ export class AppRedditThreadCardComponent {
   @Input() linkData: any;
   @Output() dataLoaded = new EventEmitter();
 
-  @ViewChild('media') media: ElementRef | undefined;
+  @ViewChild('media') media?: ElementRef;
   showBackGroundNSFW = true;
   apiURL = environment.apiURL;
 

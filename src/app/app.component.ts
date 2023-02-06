@@ -11,15 +11,16 @@ import {FormControl} from "@angular/forms";
 })
 export class AppComponent implements OnInit {
   title = 'reddit-parser';
-  testData$: Observable<any> | undefined;
+  testData$?: Observable<any>;
   masonryOptions: NgxMasonryOptions = {
     gutter: 15
   };
 
-  control: FormControl<string | null> = new FormControl('UkraineWarVideoReport');
-  @ViewChild('masonry') masonry: NgxMasonryComponent | undefined;
+  control: FormControl<string | null>;
+  @ViewChild('masonry') masonry?: NgxMasonryComponent;
 
   constructor(private redditApiService: RedditApiService) {
+    this.control = new FormControl('UkraineWarVideoReport');
   }
 
   ngOnInit(): void {
@@ -27,13 +28,11 @@ export class AppComponent implements OnInit {
   }
 
   getRedditTop() {
-    /*this.testData$ = of(testData).pipe(
-      map((res) => JSON.parse(JSON.stringify(res)?.replaceAll('&amp;', '&')))
-    );*/
+    // this.testData$ = of(testData).pipe(map((res) => JSON.parse(JSON.stringify(res)?.replaceAll('&amp;', '&'))));
     if (!this.control.value) {
       this.control.setValue('UkraineWarVideoReport');
     }
-    this.testData$ = this.redditApiService.getRedditTop(this.control.value);
+    this.testData$ = this.redditApiService.getRedditTop(this.control.value || null);
   }
 
   reloadMasonryLayout() {

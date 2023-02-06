@@ -1,9 +1,9 @@
 import {Pipe, PipeTransform} from "@angular/core";
 
 @Pipe({
-  name: 'cleanCategory'
+  name: 'cleanTags'
 })
-export class CleanCategoryPipe implements PipeTransform {
+export class CleanTagsPipe implements PipeTransform {
 
   transform(value: string): string {
     return value

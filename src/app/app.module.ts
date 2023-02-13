@@ -19,6 +19,7 @@ import {PinchZoomModule} from "ngx-pinch-zoom";
 import {MatCarouselModule} from "ng-mat-carousel";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -26,24 +27,25 @@ import {ReactiveFormsModule} from "@angular/forms";
     AppRedditThreadCardComponent,
     AppNsfwContentComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatCardModule,
-    MatButtonModule,
-    MatCarouselModule,
-    NgOptimizedImage,
-    AppCommonModule.forRoot(),
-    NgxMasonryModule,
-    VgCoreModule,
-    VgControlsModule,
-    VgOverlayPlayModule,
-    VgBufferingModule,
-    PinchZoomModule,
-    MatInputModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatCardModule,
+        MatButtonModule,
+        MatCarouselModule,
+        NgOptimizedImage,
+        AppCommonModule.forRoot(),
+        NgxMasonryModule,
+        VgCoreModule,
+        VgControlsModule,
+        VgOverlayPlayModule,
+        VgBufferingModule,
+        PinchZoomModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

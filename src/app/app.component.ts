@@ -2,7 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgxMasonryComponent, NgxMasonryOptions} from "ngx-masonry";
 import {RedditApiService} from "./shared/app-common/services/reddit-api.service";
 import {Observable} from "rxjs";
-import {FormControl} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {categoryList} from "./static/category-list";
 
 @Component({
   selector: 'app-root',
@@ -16,11 +17,17 @@ export class AppComponent implements OnInit {
     gutter: 15
   };
 
-  control: FormControl<string | null>;
+  categoryList = categoryList.sort();
+
+  formGroup: FormGroup;
   @ViewChild('masonry') masonry?: NgxMasonryComponent;
 
-  constructor(private redditApiService: RedditApiService) {
-    this.control = new FormControl('UkraineWarVideoReport');
+  constructor(private redditApiService: RedditApiService,
+              private formBuilder: FormBuilder) {
+    this.formGroup = this.formBuilder.group({
+      subreddit: ['UkraineWarVideoReport'],
+      category: [this.categoryList[0]]
+    });
   }
 
   ngOnInit(): void {
@@ -29,10 +36,16 @@ export class AppComponent implements OnInit {
 
   getRedditTop() {
     // this.testData$ = of(testData).pipe(map((res) => JSON.parse(JSON.stringify(res)?.replaceAll('&amp;', '&'))));
-    if (!this.control.value) {
-      this.control.setValue('UkraineWarVideoReport');
+    if (!this.formGroup.get('subreddit')?.value) {
+      this.formGroup.get('subreddit')?.setValue('UkraineWarVideoReport');
     }
-    this.testData$ = this.redditApiService.getRedditTop(this.control.value || null);
+    if (!this.formGroup.get('category')?.value) {
+      this.formGroup.get('category')?.setValue(this.categoryList[0]);
+    }
+    this.testData$ = this.redditApiService.getRedditTop(
+      this.formGroup.get('subreddit')?.value,
+      this.formGroup.get('category')?.value
+    );
   }
 
   reloadMasonryLayout() {

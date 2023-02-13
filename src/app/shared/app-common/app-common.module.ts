@@ -12,9 +12,11 @@ import {GetGalleryDataPipe} from "./pipes/get-gallery-data.pipe";
 import {GetGalleryMediaMetadataPipe} from "./pipes/get-gallery-media-metadata.pipe";
 import {IsVideoPipe} from "./pipes/is-video.pipe";
 import {IsCrossPostPipe} from "./pipes/is-cross-post.pipe";
+import {GetFormControlPipe} from "./pipes/get-form-control.pipe";
 
 const pipes = [
   CleanTagsPipe,
+  GetFormControlPipe,
   GetGalleryDataPipe,
   GetGalleryMediaMetadataPipe,
   GetImageUrlPipe,

@@ -11,26 +11,26 @@ import {categoryList} from "./static/category-list";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'reddit-parser';
+
   testData$?: Observable<any>;
   masonryOptions: NgxMasonryOptions = {
     gutter: 15
   };
-
+  formGroup: FormGroup;
   categoryList = categoryList.sort();
 
-  formGroup: FormGroup;
   @ViewChild('masonry') masonry?: NgxMasonryComponent;
 
   constructor(private redditApiService: RedditApiService,
               private formBuilder: FormBuilder) {
+  }
+
+  ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
       subreddit: ['UkraineWarVideoReport'],
       category: [this.categoryList[0]]
     });
-  }
 
-  ngOnInit(): void {
     this.getRedditTop();
   }
 

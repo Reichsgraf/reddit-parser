@@ -1,0 +1,15 @@
+<form class="reddit-form" (submit)="$event.preventDefault(); updateRequestResult()" [formGroup]="formGroup">
+  <mat-form-field floatLabel="always">
+    <mat-label>Search Reddit</mat-label>
+    <input matInput [formControl]="formGroup | getFormControl:'subreddit'">
+    <span matTextPrefix="">/r/</span>
+  </mat-form-field>
+  <mat-form-field floatLabel="always">
+    <mat-label>Choose Category</mat-label>
+    <mat-select [formControl]="formGroup | getFormControl:'category'">
+      <mat-option *ngFor="let option of categoryList" [value]="option">{{option}}</mat-option>
+    </mat-select>
+    <span matTextPrefix="">/</span>
+  </mat-form-field>
+  <button mat-button (click)="$event.preventDefault(); updateRequestResult()">Search</button>
+</form>

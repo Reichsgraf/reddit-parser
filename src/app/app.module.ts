@@ -20,12 +20,14 @@ import {MatCarouselModule} from "ng-mat-carousel";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
+import { AppSearchFormComponent } from './app-search-form/app-search-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppRedditThreadCardComponent,
-    AppNsfwContentComponent
+    AppNsfwContentComponent,
+    AppSearchFormComponent
   ],
     imports: [
         BrowserModule,

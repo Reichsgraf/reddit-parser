@@ -9,7 +9,7 @@
 
   <div class="spacer"></div>
 
-  <form class="reddit-form" (submit)="$event.preventDefault(); getRedditTop()" [formGroup]="formGroup">
+  <!--<form class="reddit-form" (submit)="$event.preventDefault(); getRedditTop()" [formGroup]="formGroup">
     <mat-form-field floatLabel="always">
       <mat-label>Search Reddit</mat-label>
       <input matInput [formControl]="formGroup | getFormControl:'subreddit'">
@@ -23,7 +23,10 @@
       <span matTextPrefix="">/</span>
     </mat-form-field>
     <button mat-button (click)="$event.preventDefault(); getRedditTop()">Search</button>
-  </form>
+  </form>-->
+
+  <app-search-form [formGroup]="formGroup" [categoryList]="categoryList" (updateEvent)="getRedditTop()">
+  </app-search-form>
 
   <div class="spacer"></div>
 

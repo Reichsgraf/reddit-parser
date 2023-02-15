@@ -6,8 +6,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class GetFormControlPipe implements PipeTransform {
 
-  transform(group: FormGroup, controlName: string): FormControl {
-    return <FormControl> group.get(controlName);
+  transform(group: FormGroup | undefined, controlName: string): FormControl {
+    return <FormControl> group?.get(controlName);
   }
 
 }

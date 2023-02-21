@@ -9,7 +9,7 @@
 
   <div class="spacer"></div>
 
-  <app-search-form [formGroup]="formGroup" [categoryList]="categoryList" (updateEvent)="getRedditTop()">
+  <app-search-form *desktop [formGroup]="formGroup" [categoryList]="categoryList" (updateEvent)="getRedditTop()">
   </app-search-form>
 
   <div class="spacer"></div>
@@ -28,13 +28,24 @@
   </a>
 </div>
 
+<div class="toolbar__search-form">
+  <app-search-form *mobile [formGroup]="formGroup" [categoryList]="categoryList" (updateEvent)="getRedditTop()">
+  </app-search-form>
+</div>
+
 <div class="content" role="main">
 
-  <ngx-masonry #masonry class="newsfeed" [options]="masonryOptions" [ordered]="true"
+  <ngx-masonry *desktop #masonry class="newsfeed" [options]="masonryOptions" [ordered]="true"
                (itemsLoaded)="reloadMasonryLayout()">
     <app-reddit-thread-card *ngFor="let item of ((testData$ | async)?.data?.children || [])" ngxMasonryItem
                             [linkData]="item" (dataLoaded)="reloadMasonryLayout()">
     </app-reddit-thread-card>
   </ngx-masonry>
+
+  <ng-container *mobile>
+    <app-reddit-thread-card *ngFor="let item of ((testData$ | async)?.data?.children || [])"
+                            [linkData]="item" (dataLoaded)="reloadMasonryLayout()">
+    </app-reddit-thread-card>
+  </ng-container>
 
 </div>

@@ -31,17 +31,18 @@ p {
   flex: 1;
 }
 
-.toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
+@mixin toolbar {
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: #1976d2;
   color: white;
   font-weight: 600;
+}
+
+.toolbar {
+  @include toolbar;
+  height: 60px;
 }
 
 .toolbar img {
@@ -63,13 +64,21 @@ p {
   opacity: 0.8;
 }
 
+.toolbar__search-form {
+  @include toolbar;
+}
+
 .content {
   display: flex;
-  margin: 82px auto 32px;
+  margin: 32px auto 32px;
   padding: 0 16px;
   max-width: 85%;
   flex-direction: column;
   align-items: center;
+
+  :host-context(.mobile) & {
+    max-width: 100%;
+  }
 }
 
 svg.material-icons {
@@ -296,12 +305,4 @@ svg#clouds {
     display: none;
     visibility: hidden;
   }
-}
-
-.reddit-form {
-  background-color: whitesmoke;
-  border-radius: 4px;
-  align-items: center;
-  display: flex;
-  padding: 0 10px;
 }

@@ -6,7 +6,8 @@
   </mat-form-field>
   <mat-form-field floatLabel="always">
     <mat-label>Choose Category</mat-label>
-    <mat-select [formControl]="formGroup | getFormControl:'category'">
+    <mat-select [formControl]="formGroup | getFormControl:'category'"
+                (selectionChange)="updateRequestResult()">
       <mat-option *ngFor="let option of categoryList" [value]="option">{{option}}</mat-option>
     </mat-select>
     <span matTextPrefix="">/</span>

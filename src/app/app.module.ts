@@ -21,6 +21,7 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import { AppSearchFormComponent } from './app-search-form/app-search-form.component';
+import {ResponsiveModule} from "./shared/responsive/responsive.module";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AppSearchFormComponent } from './app-search-form/app-search-form.compon
         MatCarouselModule,
         NgOptimizedImage,
         AppCommonModule.forRoot(),
+        ResponsiveModule.forRoot(),
         NgxMasonryModule,
         VgCoreModule,
         VgControlsModule,

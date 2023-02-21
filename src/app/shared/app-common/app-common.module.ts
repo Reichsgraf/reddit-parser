@@ -35,13 +35,13 @@ const services = [
 
 @NgModule({
   declarations: [
-    pipes
+    pipes,
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    pipes
+    pipes,
   ]
 })
 export class AppCommonModule {

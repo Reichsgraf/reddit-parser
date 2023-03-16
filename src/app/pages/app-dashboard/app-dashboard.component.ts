@@ -2,8 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Observable} from "rxjs";
 import {NgxMasonryComponent, NgxMasonryOptions} from "ngx-masonry";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {RedditApiService} from "../shared/app-common/services/reddit-api.service";
-import {categoryList} from "../static/category-list";
+import {RedditApiService} from "../../shared/app-common/services/reddit-api.service";
+import {categoryList} from "../../static/category-list";
 
 @Component({
   selector: 'app-dashboard',

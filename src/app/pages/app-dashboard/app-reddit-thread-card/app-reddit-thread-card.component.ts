@@ -6,7 +6,8 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import {environment} from "../../../environments/environment";
+import {environment} from "../../../../environments/environment";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-reddit-thread-card',
@@ -22,6 +23,8 @@ export class AppRedditThreadCardComponent {
   showBackGroundNSFW = true;
   apiURL = environment.apiURL;
 
+  constructor(private snackBar: MatSnackBar) {}
+
   reloadMasonryLayout() {
     this.dataLoaded.emit();
   }
@@ -36,6 +39,10 @@ export class AppRedditThreadCardComponent {
 
   goToSource() {
     window.open(`${this.apiURL}${this.linkData?.data?.permalink}`, "_blank")
+  }
+
+  copyLink() {
+    this.snackBar.open('Link is copied', '', { duration: 2000 })
   }
 
 }

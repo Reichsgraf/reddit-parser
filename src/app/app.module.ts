@@ -1,31 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { AppRedditThreadCardComponent } from './app-dashboard/app-reddit-thread-card/app-reddit-thread-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from "@angular/material/card";
-import {NgOptimizedImage} from "@angular/common";
-import {AppCommonModule} from "./shared/app-common/app-common.module";
-import {NgxMasonryModule} from "ngx-masonry";
-import {VgCoreModule} from "@videogular/ngx-videogular/core";
-import {VgControlsModule} from "@videogular/ngx-videogular/controls";
-import {VgOverlayPlayModule} from "@videogular/ngx-videogular/overlay-play";
-import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ApiPrefixInterceptor} from "./shared/app-common/interceptors/api-prefix.interceptor";
-import {MatButtonModule} from "@angular/material/button";
-import {PinchZoomModule} from "ngx-pinch-zoom";
-import {MatCarouselModule} from "ng-mat-carousel";
-import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatSelectModule} from "@angular/material/select";
-import {ResponsiveModule} from "./shared/responsive/responsive.module";
 import {RouterModule, RouterOutlet} from "@angular/router";
 import {routes} from "./app.routing";
+import { AppLoginComponent } from './pages/app-login/app-login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppLoginComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

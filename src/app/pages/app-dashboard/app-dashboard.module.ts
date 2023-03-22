@@ -31,6 +31,7 @@ import {ResponsiveModule} from "../../shared/responsive/responsive.module";
     AppDashboardComponent,
   ],
   imports: [
+    CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     AppCommonModule,
@@ -48,7 +49,6 @@ import {ResponsiveModule} from "../../shared/responsive/responsive.module";
     MatSnackBarModule,
     ClipboardModule,
     NgOptimizedImage,
-    CommonModule,
     AppCommonModule.forRoot(),
     ResponsiveModule.forRoot(),
   ]

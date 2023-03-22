@@ -6,12 +6,10 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ApiPrefixInterceptor} from "./shared/app-common/interceptors/api-prefix.interceptor";
 import {RouterModule, RouterOutlet} from "@angular/router";
 import {routes} from "./app.routing";
-import { AppLoginComponent } from './pages/app-login/app-login.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AppLoginComponent
+    AppComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

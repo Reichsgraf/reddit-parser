@@ -1,0 +1,15 @@
+:host {
+  color: black;
+}
+
+.mat-mdc-card-header, .mdc-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

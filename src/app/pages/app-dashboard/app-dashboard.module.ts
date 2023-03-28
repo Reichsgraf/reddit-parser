@@ -22,6 +22,7 @@ import {MatCarouselModule} from "ng-mat-carousel";
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {ResponsiveModule} from "../../shared/responsive/responsive.module";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -30,28 +31,29 @@ import {ResponsiveModule} from "../../shared/responsive/responsive.module";
     AppSearchFormComponent,
     AppDashboardComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule,
-    AppCommonModule,
-    NgxMasonryModule,
-    VgCoreModule,
-    VgControlsModule,
-    VgOverlayPlayModule,
-    VgBufferingModule,
-    PinchZoomModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatButtonModule,
-    MatCarouselModule,
-    MatSnackBarModule,
-    ClipboardModule,
-    NgOptimizedImage,
-    AppCommonModule.forRoot(),
-    ResponsiveModule.forRoot(),
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        AppCommonModule,
+        NgxMasonryModule,
+        VgCoreModule,
+        VgControlsModule,
+        VgOverlayPlayModule,
+        VgBufferingModule,
+        PinchZoomModule,
+        MatInputModule,
+        MatSelectModule,
+        MatCardModule,
+        MatButtonModule,
+        MatCarouselModule,
+        MatSnackBarModule,
+        ClipboardModule,
+        NgOptimizedImage,
+        AppCommonModule.forRoot(),
+        ResponsiveModule.forRoot(),
+        MatIconModule,
+    ]
 })
 export class AppDashboardModule {
 

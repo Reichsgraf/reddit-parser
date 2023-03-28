@@ -8,7 +8,7 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
   private readonly prefix: string;
 
   constructor() {
-    this.prefix = environment.apiURL;
+    this.prefix = environment.apiUrl;
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

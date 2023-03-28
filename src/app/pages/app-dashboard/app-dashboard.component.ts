@@ -4,6 +4,7 @@ import {NgxMasonryComponent, NgxMasonryOptions} from "ngx-masonry";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RedditApiService} from "../../shared/app-common/services/reddit-api.service";
 import {categoryList} from "../../static/category-list";
+import {AuthService} from "../../shared/app-common/services/auth.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,8 @@ export class AppDashboardComponent implements OnInit {
   @ViewChild('masonry') masonry?: NgxMasonryComponent;
 
   constructor(private redditApiService: RedditApiService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -53,6 +55,10 @@ export class AppDashboardComponent implements OnInit {
       this.masonry.reloadItems();
       this.masonry.layout();
     }
+  }
+
+  logout() {
+    return this.authService.logoutUser();
   }
 
 }

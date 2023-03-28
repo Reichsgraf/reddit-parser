@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiURL: 'https://www.reddit.com'
+  apiUrl: 'http://localhost:3000',
+  redditApiUrl: 'https://www.reddit.com'
 };

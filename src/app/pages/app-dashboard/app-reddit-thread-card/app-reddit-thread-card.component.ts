@@ -21,7 +21,7 @@ export class AppRedditThreadCardComponent {
 
   @ViewChild('media') media?: ElementRef;
   showBackGroundNSFW = true;
-  apiURL = environment.apiURL;
+  apiURL = environment.redditApiUrl;
 
   constructor(private snackBar: MatSnackBar) {}
 

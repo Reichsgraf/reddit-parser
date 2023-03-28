@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../../shared/app-common/services/auth.service";
+import {catchError, map} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-app-sign-up',
@@ -9,8 +12,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class AppSignUpComponent implements OnInit {
 
   formGroup: FormGroup;
+  error: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -19,6 +25,20 @@ export class AppSignUpComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     })
+  }
+
+  register() {
+    return this.authService.createUser(
+      this.formGroup.get('email')?.value,
+      this.formGroup.get('username')?.value,
+      this.formGroup.get('password')?.value
+    ).pipe(
+      map(() => {
+        this.error = '';
+        return this.router.navigate(['/auth/sign-in']);
+      }),
+      catchError(err => this.error = err.statusText)
+    ).subscribe();
   }
 
 }

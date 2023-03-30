@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {TokenService} from "../services/token.service";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
@@ -28,4 +28,10 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 
+}
+
+export const tokenInterceptorProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: TokenInterceptor,
+  multi: true
 }

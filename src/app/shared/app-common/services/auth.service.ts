@@ -5,8 +5,9 @@ import {TokenService} from "./token.service";
 import {Router} from "@angular/router";
 
 export interface User {
-  email: string;
+  user: string;
   token: string;
+  expiresIn: string;
 }
 
 @Injectable()
@@ -21,23 +22,22 @@ export class AuthService {
   createUser(email: string, username: string, password: string) {
     const body = { email, username, password };
     return this.http.post<User>('/auth/sign-up', body)
-      .pipe(
+      /*.pipe(
         map(res => res?.token),
         tap((token: string) => {
           this.tokenService.setToken(token);
           this.user$.next({email, token});
         })
-      );
+      )*/;
   }
 
   loginUser(email: string, password: string) {
     const body = { email, password };
     return this.http.post<User>('/auth/sign-in', body)
       .pipe(
-        map(res => res?.token),
-        tap((token: string) => {
-          this.tokenService.setToken(token);
-          this.user$.next({ email, token });
+        tap(res => {
+          this.tokenService.setToken(res.token, res.expiresIn);
+          this.user$.next(res);
         })
       );
   }

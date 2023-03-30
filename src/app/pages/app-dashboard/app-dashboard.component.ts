@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {NgxMasonryComponent, NgxMasonryOptions} from "ngx-masonry";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RedditApiService} from "../../shared/app-common/services/reddit-api.service";
@@ -13,7 +13,7 @@ import {AuthService} from "../../shared/app-common/services/auth.service";
 })
 export class AppDashboardComponent implements OnInit {
 
-  testData$?: Observable<any>;
+  parsedData$: Observable<any>;
   masonryOptions: NgxMasonryOptions = {
     gutter: 15
   };
@@ -37,14 +37,15 @@ export class AppDashboardComponent implements OnInit {
   }
 
   getRedditTop() {
-    // this.testData$ = of(testData).pipe(map((res) => JSON.parse(JSON.stringify(res)?.replaceAll('&amp;', '&'))));
     if (!this.formGroup.get('subreddit')?.value) {
       this.formGroup.get('subreddit')?.setValue('UkraineWarVideoReport');
     }
     if (!this.formGroup.get('category')?.value) {
       this.formGroup.get('category')?.setValue(this.categoryList[0]);
     }
-    this.testData$ = this.redditApiService.getRedditTop(
+
+    // this.testData$ = of(testData).pipe(map((res) => JSON.parse(JSON.stringify(res)?.replaceAll('&amp;', '&'))));
+    this.parsedData$ = this.redditApiService.getRedditTop(
       this.formGroup.get('subreddit')?.value,
       this.formGroup.get('category')?.value
     );

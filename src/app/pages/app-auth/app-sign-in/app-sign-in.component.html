@@ -6,15 +6,14 @@
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <form class="login-form" [formGroup]="formGroup">
-      <mat-form-field floatLabel="always">
-        <mat-label>E-mail</mat-label>
-        <input matInput type="email" [formControl]="formGroup | getFormControl:'email'">
-      </mat-form-field>
-      <mat-form-field floatLabel="always">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" [formControl]="formGroup | getFormControl:'password'">
-      </mat-form-field>
+    <form class="login-form">
+      <common-input-field [inputLabel]="'E-mail'" [inputType]="'email'"
+                          [formGroup]="formGroup" [name]="'email'">
+      </common-input-field>
+
+      <common-input-field [inputLabel]="'Password'" [inputType]="'password'"
+                          [formGroup]="formGroup" [name]="'password'">
+      </common-input-field>
     </form>
   </mat-card-content>
   <mat-card-actions>

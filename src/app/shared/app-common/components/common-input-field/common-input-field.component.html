@@ -1,0 +1,6 @@
+<mat-form-field floatLabel="always" [formGroup]="formGroup"
+                *ngIf="formGroup | getFormControl:name as formControl">
+  <mat-label>{{inputLabel}}</mat-label>
+  <input matInput [type]="inputType" [formControlName]="name">
+  <mat-error *ngIf="formControl.errors">{{formControl.errors | keyvalue | getFormError}}</mat-error>
+</mat-form-field>

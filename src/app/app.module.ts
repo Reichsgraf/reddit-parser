@@ -13,7 +13,7 @@ import {tokenInterceptorProvider} from "./shared/app-common/interceptors/token.i
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -13,6 +13,14 @@ import {GetGalleryMediaMetadataPipe} from "./pipes/get-gallery-media-metadata.pi
 import {IsVideoPipe} from "./pipes/is-video.pipe";
 import {IsCrossPostPipe} from "./pipes/is-cross-post.pipe";
 import {GetFormControlPipe} from "./pipes/get-form-control.pipe";
+import {MatInputModule} from "@angular/material/input";
+import {GetFormErrorPipe} from "./pipes/get-form-error.pipe";
+import {CommonInputFieldComponent} from "./components/common-input-field/common-input-field.component";
+import {ReactiveFormsModule} from "@angular/forms";
+
+const components = [
+  CommonInputFieldComponent
+]
 
 const pipes = [
   CleanTagsPipe,
@@ -27,6 +35,7 @@ const pipes = [
   IsRedditDomainPipe,
   IsRedditGalleryPipe,
   IsVideoPipe,
+  GetFormErrorPipe,
 ]
 
 const services = [
@@ -35,12 +44,16 @@ const services = [
 
 @NgModule({
   declarations: [
+    components,
     pipes,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   exports: [
+    components,
     pipes,
   ]
 })

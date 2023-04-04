@@ -1,0 +1,5 @@
+{
+  "error-email": "Must be email",
+  "error-required": "This field is required",
+  "error-minlength": "Min length: {{value.requiredLength}}"
+}

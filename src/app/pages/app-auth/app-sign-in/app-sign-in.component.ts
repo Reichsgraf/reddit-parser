@@ -22,7 +22,7 @@ export class AppSignInComponent implements OnInit {
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required]]
     })
   }
 

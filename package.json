@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "@videogular/ngx-videogular": "^7.0.1",
     "masonry-layout": "^4.2.2",
     "ng-mat-carousel": "^0.11.1",

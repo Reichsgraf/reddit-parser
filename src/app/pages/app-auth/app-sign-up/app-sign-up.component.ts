@@ -22,8 +22,8 @@ export class AppSignUpComponent implements OnInit {
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
 
     this.formGroup.updateValueAndValidity();

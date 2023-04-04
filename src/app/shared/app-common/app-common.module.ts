@@ -17,6 +17,7 @@ import {MatInputModule} from "@angular/material/input";
 import {GetFormErrorPipe} from "./pipes/get-form-error.pipe";
 import {CommonInputFieldComponent} from "./components/common-input-field/common-input-field.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {TranslateModule} from "@ngx-translate/core";
 
 const components = [
   CommonInputFieldComponent
@@ -47,11 +48,12 @@ const services = [
     components,
     pipes,
   ],
-  imports: [
-    CommonModule,
-    MatInputModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        TranslateModule
+    ],
   exports: [
     components,
     pipes,

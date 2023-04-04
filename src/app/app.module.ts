@@ -10,6 +10,7 @@ import {AuthGuard} from "./shared/guards/auth.guard";
 import {AuthService} from "./shared/app-common/services/auth.service";
 import {TokenService} from "./shared/app-common/services/token.service";
 import {tokenInterceptorProvider} from "./shared/app-common/interceptors/token.interceptor";
+import {NgxTranslateModule} from "./translate/ngx-translate.module";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {tokenInterceptorProvider} from "./shared/app-common/interceptors/token.i
     BrowserAnimationsModule,
     HttpClientModule,
     RouterOutlet,
+    NgxTranslateModule,
   ],
   providers: [
     apiPrefixInterceptorProvider,

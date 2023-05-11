@@ -23,6 +23,9 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {ResponsiveModule} from "../../shared/responsive/responsive.module";
 import {MatIconModule} from "@angular/material/icon";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatRippleModule} from "@angular/material/core";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -31,29 +34,32 @@ import {MatIconModule} from "@angular/material/icon";
     AppSearchFormComponent,
     AppDashboardComponent,
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        ReactiveFormsModule,
-        AppCommonModule,
-        NgxMasonryModule,
-        VgCoreModule,
-        VgControlsModule,
-        VgOverlayPlayModule,
-        VgBufferingModule,
-        PinchZoomModule,
-        MatInputModule,
-        MatSelectModule,
-        MatCardModule,
-        MatButtonModule,
-        MatCarouselModule,
-        MatSnackBarModule,
-        ClipboardModule,
-        NgOptimizedImage,
-        AppCommonModule.forRoot(),
-        ResponsiveModule.forRoot(),
-        MatIconModule,
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    AppCommonModule,
+    NgxMasonryModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    PinchZoomModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule,
+    MatButtonModule,
+    MatCarouselModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    ClipboardModule,
+    NgOptimizedImage,
+    AppCommonModule.forRoot(),
+    ResponsiveModule.forRoot(),
+    MatIconModule,
+    MatRippleModule,
+    MatMenuModule,
+  ]
 })
 export class AppDashboardModule {
 

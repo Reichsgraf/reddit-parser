@@ -2,6 +2,8 @@ import {inject, Injectable} from "@angular/core";
 import {Subject} from "rxjs";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
+// according to https://blog.angular-university.io/angular-responsive-design/
+
 export type ResponsiveFormat = 'DESKTOP' | 'TABLET' | 'MOBILE';
 
 @Injectable({

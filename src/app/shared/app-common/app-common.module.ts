@@ -18,6 +18,7 @@ import {GetFormErrorPipe} from "./pipes/get-form-error.pipe";
 import {CommonInputFieldComponent} from "./components/common-input-field/common-input-field.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
+import {ResponsiveModule} from "../responsive/responsive.module";
 
 const components = [
   CommonInputFieldComponent
@@ -57,6 +58,7 @@ const services = [
   exports: [
     components,
     pipes,
+    ResponsiveModule,
   ]
 })
 export class AppCommonModule {

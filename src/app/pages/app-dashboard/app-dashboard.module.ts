@@ -21,7 +21,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCarouselModule} from "ng-mat-carousel";
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
-import {ResponsiveModule} from "../../shared/responsive/responsive.module";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatRippleModule} from "@angular/material/core";
@@ -55,7 +54,6 @@ import {MatMenuModule} from "@angular/material/menu";
     ClipboardModule,
     NgOptimizedImage,
     AppCommonModule.forRoot(),
-    ResponsiveModule.forRoot(),
     MatIconModule,
     MatRippleModule,
     MatMenuModule,

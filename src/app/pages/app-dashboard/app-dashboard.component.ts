@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {Observable, tap} from "rxjs";
 import {NgxMasonryComponent, NgxMasonryOptions} from "ngx-masonry";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {RedditApiService} from "../../shared/app-common/services/reddit-api.service";
 import {categoryList} from "../../static/category-list";
 import {AuthService} from "../../shared/app-common/services/auth.service";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,24 +14,22 @@ import {AuthService} from "../../shared/app-common/services/auth.service";
 })
 export class AppDashboardComponent implements OnInit {
 
+  private redditApiService = inject(RedditApiService);
+  private authService = inject(AuthService);
+
   parsedData$: Observable<any>;
   masonryOptions: NgxMasonryOptions = {
     gutter: 15
   };
   formGroup: FormGroup;
-  categoryList = categoryList.sort();
+  categoryList = categoryList.sort().reverse();
 
   @ViewChild('masonry') masonry?: NgxMasonryComponent;
 
-  constructor(private redditApiService: RedditApiService,
-              private formBuilder: FormBuilder,
-              private authService: AuthService) {
-  }
-
   ngOnInit(): void {
-    this.formGroup = this.formBuilder.group({
-      subreddit: ['UkraineWarVideoReport'],
-      category: [this.categoryList[0]]
+    this.formGroup = new FormGroup({
+      subreddit: new FormControl('UkraineWarVideoReport'),
+      category: new FormControl(this.categoryList[0])
     });
 
     this.getRedditTop();

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, inject, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../shared/app-common/services/auth.service";
 import {catchError, map} from "rxjs";
 import {Router} from "@angular/router";
@@ -11,19 +11,17 @@ import {Router} from "@angular/router";
 })
 export class AppSignUpComponent implements OnInit {
 
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   formGroup: FormGroup;
   error: string;
 
-  constructor(private formBuilder: FormBuilder,
-              private authService: AuthService,
-              private router: Router) {
-  }
-
   ngOnInit() {
-    this.formGroup = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      username: ['', [Validators.required, Validators.minLength(8)]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+    this.formGroup = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)])
     });
   }
 

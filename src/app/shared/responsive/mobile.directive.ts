@@ -16,21 +16,15 @@ export class MobileDirective implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.updateView();
-    this.subscription = this.responsiveService.responsiveChangeSubject.subscribe(() => {
-      this.updateView();
-    });
+    this.subscription = this.responsiveService.responsiveChangeSubject
+      .subscribe(() => this.updateView());
   }
 
   updateView() {
-    // needs to be in a promise
-    // see https://github.com/angular/angular/issues/15634
-    Promise.resolve().then(() => {
-      if (this.responsiveService.responsiveFormat === 'MOBILE') {
-        this.viewContainer.createEmbeddedView(this.templateRef);
-      } else {
-        this.viewContainer.clear();
-      }
-    });
+    Promise.resolve().then(() =>
+      this.responsiveService.responsiveFormat === 'MOBILE'
+        ? this.viewContainer.createEmbeddedView(this.templateRef) : this.viewContainer.clear()
+    );
   }
 
   ngOnDestroy(): void {

@@ -1,40 +1,61 @@
-import {Injectable} from "@angular/core";
-import {DeviceDetectorService} from "ngx-device-detector";
+import {inject, Injectable} from "@angular/core";
 import {Subject} from "rxjs";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+
+export type ResponsiveFormat = 'DESKTOP' | 'TABLET' | 'MOBILE';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResponsiveService {
 
-  responsiveChangeSubject = new Subject();
-  responsiveCheckSubject = new Subject();
+  private responsive = inject(BreakpointObserver);
 
-  responsiveFormat = 'n/a'; // DESKTOP, MOBILE, TABLET
+  responsiveChangeSubject = new Subject<ResponsiveFormat>();
+  responsiveCheckSubject = new Subject<ResponsiveFormat>();
 
-  constructor(private deviceDetectorService: DeviceDetectorService) {
-    // TODO: implement smarter logic with DDS or remove it somewhere in future
-    document.addEventListener('resize', () => this.checkResponsiveFormat());
-    window.addEventListener('resize', () => this.checkResponsiveFormat());
-    this.checkResponsiveFormat();
-    // ios keyboard fixes
-    (window as any).addEventListener('keyboardDidHide', () => setTimeout(() => this.checkResponsiveFormat()));
-    (window as any).addEventListener('keyboardDidShow', () => setTimeout(() => this.checkResponsiveFormat()));
+  responsiveFormat: ResponsiveFormat;
+
+  constructor() {
+    this.responsive.observe([
+      Breakpoints.WebPortrait,
+      Breakpoints.Tablet,
+      Breakpoints.HandsetPortrait
+    ]).subscribe(result => {
+      const breakpoints = result.breakpoints;
+
+      if (breakpoints[Breakpoints.WebPortrait]) {
+        return this.checkResponsiveFormat('DESKTOP');
+      }
+
+      if (breakpoints[Breakpoints.TabletLandscape]) {
+        return this.checkResponsiveFormat('DESKTOP');
+      }
+
+      if (breakpoints[Breakpoints.TabletPortrait]) {
+        return this.checkResponsiveFormat('MOBILE');
+      }
+
+      if (breakpoints[Breakpoints.HandsetPortrait]) {
+        return this.checkResponsiveFormat('MOBILE');
+      }
+
+      return this.checkResponsiveFormat('DESKTOP');
+    });
   }
 
-  checkResponsiveFormat() {
+  checkResponsiveFormat(format: ResponsiveFormat) {
     this.responsiveCheckSubject.next(this.responsiveFormat);
-    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
 
     const oldFormat = this.responsiveFormat;
 
-    if (window.innerWidth > 840) {
+    if (format === 'DESKTOP') {
       this.responsiveFormat = 'DESKTOP';
       document.body.classList.remove('mobile');
       document.body.classList.add('desktop');
     }
 
-    if (window.innerWidth <= 840) {
+    if (format === 'MOBILE') {
       this.responsiveFormat = 'MOBILE';
       document.body.classList.remove('desktop');
       document.body.classList.add('mobile');

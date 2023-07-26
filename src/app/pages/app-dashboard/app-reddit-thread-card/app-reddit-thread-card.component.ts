@@ -1,7 +1,7 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, inject,
   Input,
   Output,
   ViewChild
@@ -16,14 +16,14 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class AppRedditThreadCardComponent {
 
+  private snackBar = inject(MatSnackBar);
+
   @Input() linkData: any;
   @Output() dataLoaded = new EventEmitter();
 
   @ViewChild('media') media?: ElementRef;
   showBackGroundNSFW = true;
   apiURL = environment.redditApiUrl;
-
-  constructor(private snackBar: MatSnackBar) {}
 
   reloadMasonryLayout() {
     this.dataLoaded.emit();

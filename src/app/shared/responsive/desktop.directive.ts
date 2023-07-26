@@ -21,15 +21,10 @@ export class DesktopDirective implements AfterViewInit, OnDestroy {
   }
 
   updateView() {
-    // needs to be in a promise
-    // see https://github.com/angular/angular/issues/15634
-    Promise.resolve().then(() => {
-      if (this.responsiveService.responsiveFormat === 'DESKTOP') {
-        this.viewContainer.createEmbeddedView(this.templateRef);
-      } else {
-        this.viewContainer.clear();
-      }
-    });
+    Promise.resolve().then(() =>
+      this.responsiveService.responsiveFormat === 'DESKTOP'
+        ? this.viewContainer.createEmbeddedView(this.templateRef) : this.viewContainer.clear()
+    );
   }
 
   ngOnDestroy(): void {

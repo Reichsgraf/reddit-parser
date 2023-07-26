@@ -48,12 +48,12 @@ const services = [
     components,
     pipes,
   ],
-    imports: [
-        CommonModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        TranslateModule
-    ],
+  imports: [
+    CommonModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    TranslateModule
+  ],
   exports: [
     components,
     pipes,

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, inject, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../shared/app-common/services/auth.service";
 import {catchError, map} from "rxjs";
 import {Router} from "@angular/router";
@@ -11,18 +11,16 @@ import {Router} from "@angular/router";
 })
 export class AppSignInComponent implements OnInit {
 
-  formGroup: FormGroup;
-  error: string;
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  constructor(private formBuilder: FormBuilder,
-              private authService: AuthService,
-              private router: Router) {
-  }
+  formGroup: FormGroup;
+  error: string = '';
 
   ngOnInit() {
-    this.formGroup = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+    this.formGroup = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
     })
   }
 

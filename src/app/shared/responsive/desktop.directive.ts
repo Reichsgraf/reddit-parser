@@ -22,7 +22,7 @@ export class DesktopDirective implements AfterViewInit, OnDestroy {
 
   updateView() {
     Promise.resolve().then(() =>
-      this.responsiveService.responsiveFormat === 'DESKTOP'
+      this.responsiveService.isDesktop
         ? this.viewContainer.createEmbeddedView(this.templateRef) : this.viewContainer.clear()
     );
   }

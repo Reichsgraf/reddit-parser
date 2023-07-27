@@ -22,7 +22,7 @@ export class MobileDirective implements AfterViewInit, OnDestroy {
 
   updateView() {
     Promise.resolve().then(() =>
-      this.responsiveService.responsiveFormat === 'MOBILE'
+      this.responsiveService.isMobile
         ? this.viewContainer.createEmbeddedView(this.templateRef) : this.viewContainer.clear()
     );
   }

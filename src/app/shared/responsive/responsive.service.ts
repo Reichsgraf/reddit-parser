@@ -68,4 +68,12 @@ export class ResponsiveService {
     }
   }
 
+  get isDesktop(): boolean {
+    return this.responsiveFormat === 'DESKTOP';
+  }
+
+  get isMobile(): boolean {
+    return this.responsiveFormat === 'MOBILE';
+  }
+
 }
